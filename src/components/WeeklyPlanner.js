@@ -1,5 +1,4 @@
-import { Card, CardActionArea, CardContent, Container, Grid, Modal, Typography } from '@mui/material'
-import { Box } from '@mui/system';
+import { Box, Card, CardActionArea, CardContent, Container, Grid, Modal, Typography } from '@mui/material'
 import React from 'react'
 import Task from './Task';
 
@@ -17,83 +16,45 @@ const style = {
 
 function WeeklyPlanner() {
 
+
+    const daysWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    
+    const cards = daysWeek.map((name, index) => {
+        return (
+            <Grid item xs={4} sx={{ p: 3 }}>
+                <CardActionArea onClick={handleOpen}>
+                    <Card>
+                        <CardContent>{name}</CardContent>
+                    </Card>
+                </CardActionArea>
+            </Grid>
+        );
+    });
 
     return (
         <div>
             <Container>
                 <Typography variant='h3' sx={{ color: '#fff' }}>Weekly Planner</Typography>
+
                 <Grid container spacing={2} sx={{ pt: 10 }}>
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen}>
-                            <Card>
-                                <CardContent>Monday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen}>
-                            <Card >
-                                <CardContent>Tuesday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen} >
-                            <Card >
-                                <CardContent>Wednesday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen} >
-                            <Card >
-                                <CardContent>Thrusday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen} >
-                            <Card >
-                                <CardContent>Friday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen}>
-                            <Card >
-                                <CardContent>Saturday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
-
-                    <Grid item xs={4} sx={{ p: 3 }}>
-                        <CardActionArea onClick={handleOpen} >
-                            <Card >
-                                <CardContent>Sunday</CardContent>
-                            </Card>
-                        </CardActionArea>
-                    </Grid>
+                    {cards}
                 </Grid>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                >
-                    {/* <Fade in={open}> */}
-                    <Box sx={style}>
-                        <Task name={"1"}/>
-                    </Box>
-                    {/* </Fade> */}
+                <Card>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                    >
+                        <Box sx={style}>
 
-                </Modal>
+                            <Task name = {'1'} />
+                        </Box>
+                    </Modal>
+                </Card>
             </Container>
         </div>
     )
