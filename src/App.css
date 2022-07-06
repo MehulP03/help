@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+    /* <div style={{backgroundImage: ""}}> */
+    background-color: #282c34;
+    min-height: 100vh;
+  background-image: url('/public/assets/wooden.jpg');
 }
 
 .App-logo {
